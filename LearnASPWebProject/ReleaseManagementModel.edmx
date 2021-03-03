@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBReleaseManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbLogin">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TeamLeaders">
+          <Key>
+            <PropertyRef Name="TLId" />
+          </Key>
+          <Property Name="TLId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TlName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Check_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Check_Project" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Check_TL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TLId" Type="varchar" Mode="In" />
+          <Parameter Name="TLName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Assign_pro_to_TL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="varchar" Mode="In" />
+          <Parameter Name="Projectname" Type="varchar" Mode="In" />
+          <Parameter Name="TeamLeadID" Type="varchar" Mode="In" />
+          <Parameter Name="TeamLeadname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="varchar" Mode="In" />
+          <Parameter Name="Employeename" Type="varchar" Mode="In" />
+          <Parameter Name="Emp_role" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="varchar" Mode="In" />
+          <Parameter Name="Projectname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertTL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TLID" Type="varchar" Mode="In" />
+          <Parameter Name="TLname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_InsertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+          <Parameter Name="urole" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_View_Projects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_View_TeamLeads" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DBReleaseManagementModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLogin" EntityType="Self.tbLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamLeaders" EntityType="Self.TeamLeaders" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBReleaseManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbLogin">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DBReleaseManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbLogins" EntityType="Self.tbLogin" />
+          <FunctionImport Name="Check_Login" ReturnType="Collection(DBReleaseManagementModel.Check_Login_Result)">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_InsertUser">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+            <Parameter Name="urole" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Employees" EntityType="DBReleaseManagementModel.Employee" />
+          <EntitySet Name="Projects" EntityType="DBReleaseManagementModel.Project" />
+          <EntitySet Name="TeamLeaders" EntityType="DBReleaseManagementModel.TeamLeader" />
+          <FunctionImport Name="Check_Project" ReturnType="Collection(DBReleaseManagementModel.Check_Project_Result)">
+            <Parameter Name="ProjectID" Mode="In" Type="String" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Check_TL" ReturnType="Collection(DBReleaseManagementModel.Check_TL_Result)">
+            <Parameter Name="TLId" Mode="In" Type="String" />
+            <Parameter Name="TLName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Assign_pro_to_TL">
+            <Parameter Name="ProjectID" Mode="In" Type="String" />
+            <Parameter Name="Projectname" Mode="In" Type="String" />
+            <Parameter Name="TeamLeadID" Mode="In" Type="String" />
+            <Parameter Name="TeamLeadname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_InsertEmployee">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="Employeename" Mode="In" Type="String" />
+            <Parameter Name="Emp_role" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_InsertProject">
+            <Parameter Name="ProjectID" Mode="In" Type="String" />
+            <Parameter Name="Projectname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_View_Projects" ReturnType="Collection(DBReleaseManagementModel.proc_View_Projects_Result)" />
+          <FunctionImport Name="proc_View_TeamLeads" ReturnType="Collection(DBReleaseManagementModel.proc_View_TeamLeads_Result)" />
+          <FunctionImport Name="proc_InsertTL">
+            <Parameter Name="TLID" Mode="In" Type="String" />
+            <Parameter Name="TLname" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Check_Login_Result">
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="role" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TeamLeader">
+          <Key>
+            <PropertyRef Name="TLId" />
+          </Key>
+          <Property Name="TLId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TlName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="Check_Project_Result">
+          <Property Type="String" Name="ProjectId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="Check_TL_Result">
+          <Property Type="String" Name="TLId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TlName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_View_Projects_Result">
+          <Property Type="String" Name="ProjectId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="proc_View_TeamLeads_Result">
+          <Property Type="String" Name="TLId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TlName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBReleaseManagementModelStoreContainer" CdmEntityContainer="DBReleaseManagementEntities">
+          <EntitySetMapping Name="tbLogins">
+            <EntityTypeMapping TypeName="DBReleaseManagementModel.tbLogin">
+              <MappingFragment StoreEntitySet="tbLogin">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Check_Login" FunctionName="DBReleaseManagementModel.Store.Check_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBReleaseManagementModel.Check_Login_Result">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_InsertUser" FunctionName="DBReleaseManagementModel.Store.proc_InsertUser" />
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DBReleaseManagementModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="DBReleaseManagementModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamLeaders">
+            <EntityTypeMapping TypeName="DBReleaseManagementModel.TeamLeader">
+              <MappingFragment StoreEntitySet="TeamLeaders">
+                <ScalarProperty Name="TlName" ColumnName="TlName" />
+                <ScalarProperty Name="TLId" ColumnName="TLId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Check_Project" FunctionName="DBReleaseManagementModel.Store.Check_Project">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBReleaseManagementModel.Check_Project_Result">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Check_TL" FunctionName="DBReleaseManagementModel.Store.Check_TL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBReleaseManagementModel.Check_TL_Result">
+                <ScalarProperty Name="TLId" ColumnName="TLId" />
+                <ScalarProperty Name="TlName" ColumnName="TlName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Assign_pro_to_TL" FunctionName="DBReleaseManagementModel.Store.proc_Assign_pro_to_TL" />
+          <FunctionImportMapping FunctionImportName="proc_InsertEmployee" FunctionName="DBReleaseManagementModel.Store.proc_InsertEmployee" />
+          <FunctionImportMapping FunctionImportName="proc_InsertProject" FunctionName="DBReleaseManagementModel.Store.proc_InsertProject" />
+          <FunctionImportMapping FunctionImportName="proc_View_Projects" FunctionName="DBReleaseManagementModel.Store.proc_View_Projects">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBReleaseManagementModel.proc_View_Projects_Result">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_View_TeamLeads" FunctionName="DBReleaseManagementModel.Store.proc_View_TeamLeads">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBReleaseManagementModel.proc_View_TeamLeads_Result">
+                <ScalarProperty Name="TLId" ColumnName="TLId" />
+                <ScalarProperty Name="TlName" ColumnName="TlName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_InsertTL" FunctionName="DBReleaseManagementModel.Store.proc_InsertTL" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

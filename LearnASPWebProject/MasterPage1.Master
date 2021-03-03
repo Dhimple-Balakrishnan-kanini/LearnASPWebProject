@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage1.master.cs" Inherits="LearnASPWebProject.MasterPage1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+
+    <form id="form1" runat="server">
+        <asp:Menu ID="Menu1" runat="server">
+            <Items>
+                <asp:MenuItem NavigateUrl="~/AddProject.aspx" Text="Add Projects" Value="Add Projects"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/Assigning_Project_To_TL.aspx" Text="Assign Project to Team Lead" Value="Assign Project to Team Lead"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/ViewTL.aspx" Text="View Team Lead" Value="View Team Lead"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/ViewAllProjects.aspx" Text="View All Projects" Value="View All Projects"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/AddEmployee.aspx" Text="Add TeamLeader/Developer/Tester" Value="Add TeamLeader/Developer/Tester"></asp:MenuItem>
+            </Items>
+        </asp:Menu>
+       
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
